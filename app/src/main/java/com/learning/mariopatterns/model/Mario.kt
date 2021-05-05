@@ -1,26 +1,28 @@
-package com.learning.mariopatterns
+package com.learning.mariopatterns.model
 
-class Mario(
-    private val visualOutput: VisualOutput
-) {
+class Mario {
+
+    var visualOutput: MarioVisualOutput? = null
+    var deathObserver: () -> Unit = {}
+    var hitObserver:  () -> Unit = {}
 
     var state: MarioState = MarioState.Tiny(this)
 
     fun die() {
-        visualOutput.triggerDeathAnimations()
+        visualOutput?.triggerDeathAnimations()
     }
 
     fun applyState(state: MarioState) {
         this.state = state
-        visualOutput.changeMarioAppearanceTo(state.appearance())
+        visualOutput?.changeMarioAppearanceTo(state.appearance())
     }
 
     fun fly() {
-        visualOutput.triggerFlyAnimations()
+        visualOutput?.triggerFlyAnimations()
     }
 
     fun throwFireball() {
-        visualOutput.triggerFireballAnimation()
+        visualOutput?.triggerFireballAnimation()
     }
 
     fun takeHit() {
@@ -38,14 +40,14 @@ class Mario(
     }
 
     private fun jump() {
-        visualOutput.triggerJumpAnimation()
+        visualOutput?.triggerJumpAnimation()
     }
 
     private fun spinJump() {
-        visualOutput.triggerSpinJumpAnimation()
+        visualOutput?.triggerSpinJumpAnimation()
     }
 
     fun triggerYoshiTongue() {
-        visualOutput.triggerYoshiTongue()
+        visualOutput?.triggerYoshiTongue()
     }
 }

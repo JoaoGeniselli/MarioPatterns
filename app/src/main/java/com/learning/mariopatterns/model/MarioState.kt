@@ -1,5 +1,6 @@
-package com.learning.mariopatterns
+package com.learning.mariopatterns.model
 
+import com.learning.mariopatterns.R
 import java.util.*
 
 sealed class MarioState(protected val mario: Mario) {
@@ -10,7 +11,8 @@ sealed class MarioState(protected val mario: Mario) {
 
     class Tiny(mario: Mario) : MarioState(mario) {
 
-        override fun appearance(): Int = R.drawable.mario_tiny
+        override fun appearance(): Int =
+            R.drawable.mario_tiny
 
         override fun takeDamage() = mario.die()
 
@@ -22,9 +24,14 @@ sealed class MarioState(protected val mario: Mario) {
 
     class Normal(mario: Mario) : MarioState(mario) {
 
-        override fun appearance(): Int = R.drawable.mario_normal
+        override fun appearance(): Int =
+            R.drawable.mario_normal
 
-        override fun takeDamage() = mario.applyState(Tiny(mario))
+        override fun takeDamage() = mario.applyState(
+            Tiny(
+                mario
+            )
+        )
 
         override fun recognizeSpecialCommand(command: String): Boolean {
             // Nothing special
@@ -34,9 +41,14 @@ sealed class MarioState(protected val mario: Mario) {
 
     class Cloaked(mario: Mario) : MarioState(mario) {
 
-        override fun appearance(): Int = R.drawable.mario_cloak
+        override fun appearance(): Int =
+            R.drawable.mario_cloak
 
-        override fun takeDamage() = mario.applyState(Tiny(mario))
+        override fun takeDamage() = mario.applyState(
+            Tiny(
+                mario
+            )
+        )
 
         override fun recognizeSpecialCommand(command: String): Boolean {
             val runThenJump = "(right + Y x 2s) + B";
@@ -50,9 +62,14 @@ sealed class MarioState(protected val mario: Mario) {
 
     class FireThrower(mario: Mario) : MarioState(mario) {
 
-        override fun appearance(): Int = R.drawable.mario_fire
+        override fun appearance(): Int =
+            R.drawable.mario_fire
 
-        override fun takeDamage() = mario.applyState(Tiny(mario))
+        override fun takeDamage() = mario.applyState(
+            Tiny(
+                mario
+            )
+        )
 
         override fun recognizeSpecialCommand(command: String): Boolean {
             if (command == "Y") {
@@ -75,10 +92,13 @@ sealed class MarioState(protected val mario: Mario) {
                     mario.applyState(wrapped)
                 }
             }
-            Timer().schedule(task, INVINCIBLE_PERIOD)
+            Timer().schedule(task,
+                INVINCIBLE_PERIOD
+            )
         }
 
-        override fun appearance(): Int = R.drawable.mario_invincible
+        override fun appearance(): Int =
+            R.drawable.mario_invincible
 
         override fun takeDamage() {
             // does not take effect
@@ -96,7 +116,8 @@ sealed class MarioState(protected val mario: Mario) {
 
     class Yoshi(mario: Mario, private val previousState: MarioState) : MarioState(mario) {
 
-        override fun appearance(): Int = R.drawable.mario_yoshi
+        override fun appearance(): Int =
+            R.drawable.mario_yoshi
 
         override fun takeDamage() = dismountYoshi()
 

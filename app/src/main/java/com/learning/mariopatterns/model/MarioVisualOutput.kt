@@ -1,10 +1,8 @@
-package com.learning.mariopatterns
+package com.learning.mariopatterns.model
 
 import androidx.annotation.LayoutRes
 
-interface VisualOutput {
-
-
+interface MarioVisualOutput {
     fun changeMarioAppearanceTo(@LayoutRes layout: Int)
     fun triggerFlyAnimations()
     fun triggerDeathAnimations()

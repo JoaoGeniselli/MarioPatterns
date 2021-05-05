@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity">
 
     <Button
         android:id="@+id/button_y"
@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_damage" />
 
     <include
+        android:id="@+id/scenario_container"
         layout="@layout/view_scenario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +67,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/item_label"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#000"
+        android:fontFamily="@font/font_mario"
+        android:text="@string/use_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Spinner
         android:id="@+id/spinner_item"
         android:layout_width="wrap_content"
@@ -73,7 +86,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/item_label" />
 
     <TextView
         android:id="@+id/state_log"

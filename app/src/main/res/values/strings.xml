@@ -6,4 +6,5 @@
     <string name="a">A</string>
     <string name="damage">Dano</string>
     <string name="fly">Voar</string>
+    <string name="use_item">Usar item</string>
 </resources>

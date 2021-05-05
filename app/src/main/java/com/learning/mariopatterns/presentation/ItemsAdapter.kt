@@ -1,4 +1,4 @@
-package com.learning.mariopatterns
+package com.learning.mariopatterns.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import com.learning.mariopatterns.R
+import com.learning.mariopatterns.model.Item
 
-class Adapter(
+class ItemsAdapter(
     context: Context,
     private val items: List<Item>
 ) : BaseAdapter() {
