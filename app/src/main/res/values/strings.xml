@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mario Patterns</string>
+    <string name="mario">Mario</string>
+    <string name="y">Y</string>
+    <string name="b">B</string>
+    <string name="a">A</string>
+    <string name="damage">Dano</string>
+    <string name="fly">Voar</string>
+</resources>
