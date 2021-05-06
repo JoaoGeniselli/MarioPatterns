@@ -14,36 +14,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val viewModel by viewModel<MainViewModel>()
     private var binding: ActivityMainBinding? = null
 
-//    private val mario: Mario = Mario(object : VisualOutput {
-//        override fun changeMarioAppearanceTo(@DrawableRes layout: Int) {
-////            findViewById<ImageView>(R.id.mario_appearance)?.setImageResource(layout)
-//        }
-//
-//        override fun triggerFlyAnimations() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Voar iniciado"
-//        }
-//
-//        override fun triggerDeathAnimations() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Mario morreu"
-//        }
-//
-//        override fun triggerFireballAnimation() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Bola de fogo disparada"
-//        }
-//
-//        override fun triggerJumpAnimation() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Pulou normal"
-//        }
-//
-//        override fun triggerSpinJumpAnimation() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Pulou girando"
-//        }
-//
-//        override fun triggerYoshiTongue() {
-//            findViewById<TextView>(R.id.state_log)?.text = "Acionou o Yoshi"
-//        }
-//    })
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
