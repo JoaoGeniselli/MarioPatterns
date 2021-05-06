@@ -34,6 +34,7 @@ class MarioOld {
             "tiny" -> die()
             "normal" -> {
                 status = "tiny"
+                updateAppearance()
             }
             "cloaked" -> {
                 status = previousStatus
@@ -46,12 +47,18 @@ class MarioOld {
             "fire" -> {
                 status = previousStatus
                 previousStatus = ""
+                ItemBackup.releaseItem()?.let {
+                    useItem(it)
+                }
                 updateAppearance()
             }
             "yoshi" -> {
                 status = previousStatus
                 previousStatus = ""
                 updateAppearance()
+                ItemBackup.releaseItem()?.let {
+                    useItem(it)
+                }
             }
         }
         hitObserver()
