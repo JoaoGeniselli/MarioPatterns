@@ -1,15 +1,21 @@
 package com.learning.mariopatterns.model
 
+import android.os.Handler
+import android.os.Looper
 import com.learning.mariopatterns.R
 import java.util.*
 
+
 sealed class MarioState(protected val mario: Mario) {
 
+    abstract fun itemToBackup(): Item?
     abstract fun appearance(): Int
     abstract fun takeDamage()
     abstract fun recognizeSpecialCommand(command: String): Boolean
 
     class Tiny(mario: Mario) : MarioState(mario) {
+
+        override fun itemToBackup(): Item? = null
 
         override fun appearance(): Int =
             R.drawable.mario_tiny
@@ -23,6 +29,8 @@ sealed class MarioState(protected val mario: Mario) {
     }
 
     class Normal(mario: Mario) : MarioState(mario) {
+
+        override fun itemToBackup(): Item? = Item.RedMushroom
 
         override fun appearance(): Int =
             R.drawable.mario_normal
@@ -40,6 +48,8 @@ sealed class MarioState(protected val mario: Mario) {
     }
 
     class Cloaked(mario: Mario) : MarioState(mario) {
+
+        override fun itemToBackup(): Item? = Item.Feather
 
         override fun appearance(): Int =
             R.drawable.mario_cloak
@@ -62,6 +72,8 @@ sealed class MarioState(protected val mario: Mario) {
 
     class FireThrower(mario: Mario) : MarioState(mario) {
 
+        override fun itemToBackup(): Item? = Item.FireFlower
+
         override fun appearance(): Int =
             R.drawable.mario_fire
 
@@ -82,6 +94,8 @@ sealed class MarioState(protected val mario: Mario) {
 
     class Invincible(mario: Mario, private val wrapped: MarioState) : MarioState(mario) {
 
+        override fun itemToBackup(): Item? = wrapped.itemToBackup()
+
         init {
             scheduleStateReset(mario)
         }
@@ -89,10 +103,13 @@ sealed class MarioState(protected val mario: Mario) {
         private fun scheduleStateReset(mario: Mario) {
             val task = object : TimerTask() {
                 override fun run() {
-                    mario.applyState(wrapped)
+                    Handler(Looper.getMainLooper()).post {
+                        mario.applyState(wrapped)
+                    }
                 }
             }
-            Timer().schedule(task,
+            Timer().schedule(
+                task,
                 INVINCIBLE_PERIOD
             )
         }
@@ -110,11 +127,13 @@ sealed class MarioState(protected val mario: Mario) {
         }
 
         companion object {
-            private const val INVINCIBLE_PERIOD = 15000L
+            private const val INVINCIBLE_PERIOD = 6000L
         }
     }
 
     class Yoshi(mario: Mario, private val previousState: MarioState) : MarioState(mario) {
+
+        override fun itemToBackup(): Item? = previousState.itemToBackup()
 
         override fun appearance(): Int =
             R.drawable.mario_yoshi

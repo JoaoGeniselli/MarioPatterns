@@ -3,10 +3,7 @@ package com.learning.mariopatterns.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.learning.mariopatterns.model.Item
-import com.learning.mariopatterns.model.ItemBackup
-import com.learning.mariopatterns.model.LifeSupply
-import com.learning.mariopatterns.model.Mario
+import com.learning.mariopatterns.model.*
 import kotlin.math.max
 
 class MainViewModel(
@@ -52,6 +49,9 @@ class MainViewModel(
                 val backup = ItemBackup.releaseItem()
                 backup?.applyTo(mario)
             }
+            visualOutput = VisualOutputToLiveDataAdapter(
+                _marioAppearance, _message
+            )
         }
         _items.value = itemList
     }

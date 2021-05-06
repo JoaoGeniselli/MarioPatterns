@@ -42,7 +42,7 @@
         android:id="@+id/hud_backup_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/item_red_mushroom"
+        tools:src="@drawable/item_red_mushroom"
         app:layout_constraintBottom_toBottomOf="@id/hud_frame"
         app:layout_constraintEnd_toEndOf="@id/hud_frame"
         app:layout_constraintStart_toStartOf="@id/hud_frame"
@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lives_label"
         tools:ignore="SmallSp"
-        tools:text="x21" />
+        android:text="x3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

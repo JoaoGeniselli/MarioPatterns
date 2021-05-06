@@ -7,10 +7,12 @@ object LifeSupply {
     var observer: (Int) -> Unit = {}
 
     fun addLives(lives: Int) {
-        LifeSupply.lives += lives
+        this.lives += lives
+        observer(this.lives)
     }
 
     fun decreaseLives() {
         lives -= 1
+        observer(lives)
     }
 }

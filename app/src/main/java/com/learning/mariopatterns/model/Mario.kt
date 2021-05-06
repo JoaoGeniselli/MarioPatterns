@@ -10,6 +10,7 @@ class Mario {
 
     fun die() {
         visualOutput?.triggerDeathAnimations()
+        deathObserver()
     }
 
     fun applyState(state: MarioState) {
@@ -27,6 +28,7 @@ class Mario {
 
     fun takeHit() {
         state.takeDamage()
+        hitObserver()
     }
 
     fun runCommand(command: String) {

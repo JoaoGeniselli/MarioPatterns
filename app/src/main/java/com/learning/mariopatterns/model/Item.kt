@@ -10,12 +10,11 @@ sealed class Item {
     abstract class StateChangingItem : Item() {
 
         override fun applyTo(mario: Mario) {
+            if (mario.state !is MarioState.Tiny) {
+                ItemBackup.setBackupItem(mario.state.itemToBackup())
+            }
             val nextState = createNextState(mario)
             mario.applyState(nextState)
-
-            if (mario.state !is MarioState.Tiny) {
-                ItemBackup.setBackupItem(this)
-            }
         }
 
         abstract fun createNextState(mario: Mario): MarioState

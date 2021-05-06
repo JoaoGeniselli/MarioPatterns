@@ -54,7 +54,23 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             message.observe(this@MainActivity, Observer { logMessage(it) })
             items.observe(this@MainActivity, Observer { showItems(it) })
             marioAppearance.observe(this@MainActivity, Observer { updateMario(it) })
+            backupItem.observe(this@MainActivity, Observer { showBackupItem(it) })
+            lives.observe(this@MainActivity, Observer { showLives(it) })
             init()
+        }
+    }
+
+    private fun showLives(lives: Int) {
+        val msg = "x$lives"
+        binding?.scenarioContainer?.lives?.text = msg
+    }
+
+    private fun showBackupItem(item: Int?) {
+        val hudView = binding?.scenarioContainer?.hudBackupItem ?: return
+        if (item == null) {
+            hudView.setImageDrawable(null)
+        } else {
+            hudView.setImageResource(item)
         }
     }
 
@@ -68,10 +84,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 this@MainActivity,
                 items
             )
-            onItemSelectedListener =
-                createSelectionListener { position ->
-                    viewModel.onItemSelected(position)
-                }
+            onItemSelectedListener = createSelectionListener { position ->
+                viewModel.onItemSelected(position)
+            }
         }
     }
 

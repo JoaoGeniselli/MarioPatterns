@@ -5,7 +5,7 @@ object ItemBackup {
     var backupListener: (Item?) -> Unit = {}
     private var backedUpItem: Item? = null
 
-    fun setBackupItem(item: Item) {
+    fun setBackupItem(item: Item?) {
         backedUpItem = item
         backupListener(item)
     }
