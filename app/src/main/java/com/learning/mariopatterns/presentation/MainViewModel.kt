@@ -46,8 +46,9 @@ class MainViewModel(
                 LifeSupply.decreaseLives()
             }
             hitObserver = {
-                val backup = ItemBackup.releaseItem()
-                backup?.applyTo(mario)
+                ItemBackup.releaseItem()?.let {
+                    mario.useItem(it)
+                }
             }
             visualOutput = VisualOutputToLiveDataAdapter(
                 _marioAppearance, _message
@@ -60,7 +61,7 @@ class MainViewModel(
 
     fun onItemSelected(position: Int) {
         val selectedItem = itemList[position]
-        selectedItem.applyTo(mario)
+        mario.useItem(selectedItem)
     }
 
     fun onControlEvent(event: String) {

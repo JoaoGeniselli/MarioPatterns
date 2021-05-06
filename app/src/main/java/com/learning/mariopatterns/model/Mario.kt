@@ -52,4 +52,8 @@ class Mario {
     fun triggerYoshiTongue() {
         visualOutput?.triggerYoshiTongue()
     }
+
+    fun useItem(item: Item) {
+        item.applyTo(this)
+    }
 }
